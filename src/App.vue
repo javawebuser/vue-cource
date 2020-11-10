@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <!-- 命名路由使用方法 -->
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link>
     </div>
+    <!-- 命名视图 根据视图名字显示不同的视图默认为default -->
     <router-view/>
+    <router-view name="email"/>
+    <router-view name="tel"/>
   </div>
 </template>
 
