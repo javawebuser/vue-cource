@@ -7,7 +7,21 @@ export default [
     alias: '/home_name',
     // name命名路由
     name: "home",
-    component: Home
+    component: Home,
+    // 问号传值的方式
+    props: route => ({
+      food: route.query.food
+    }),
+    // beforeEnter: (to, from, next) => {
+    //   if (from.name === 'about') alert('这个是从about页面来的')
+    //   else alert('这不是从about页面来的')
+    //   next() 必须用 不然不会跳转
+    // }
+  },
+  { 
+    path: '/login', 
+    name: 'login',
+    component: () => import('@/views/login.vue') 
   },
   {
     path: "/about",
@@ -15,12 +29,22 @@ export default [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "@/views/About.vue")
+    component: () => import(/* webpackChunkName: "about" */ "@/views/About.vue"),
+    // 对象模式传值
+    // props: {
+    //   food: 'banana'
+    // }
+    meta: {
+      title: '关于'
+    }
   },
   {
     // 动态路由如何传参
     path: "/argu/:name",
-    component: () => import("@/views/argu.vue")
+    name: 'argu',
+    component: () => import("@/views/argu.vue"),
+    // props可以让组件是否使用path中的参数
+    props: true
   },
   {
     // 嵌套路由
@@ -51,5 +75,10 @@ export default [
     redirect: () => {
       return '/'
     }
+  },
+  // 路由访问默认从前面开始找，当前面的页面访问不了的时候，就会访问404页面
+  {
+    path: '*',
+    component: () => import('@/views/error_404.vue')
   }
 ]
