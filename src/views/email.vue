@@ -1,7 +1,18 @@
 <template>
-  <div>email:3215712411@qq.com</div>
+  <div>
+    <button @click="handleClick">按</button>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    handleClick () {
+      this.$bus.$emit('on-click', 'hello')
+    }
+  },
+  mounted () {
+    console.log(this.$bus)
+  }
+}
 </script>

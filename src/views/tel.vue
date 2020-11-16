@@ -1,7 +1,20 @@
 <template>
-  <div>Tel:13000000000</div>
+  <div>
+    {{ message }}
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      message: ''
+    }
+  },
+  mounted () {
+    this.$bus.$on('on-click', mes => {
+      this.message = mes
+    })
+  }
+}
 </script>

@@ -76,6 +76,10 @@ export default [
       return '/'
     }
   },
+  {
+    path: '/store',
+    component: () => import('@/views/store.vue')
+  },
   // 路由访问默认从前面开始找，当前面的页面访问不了的时候，就会访问404页面
   {
     path: '*',
